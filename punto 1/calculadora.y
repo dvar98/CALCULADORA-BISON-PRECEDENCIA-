@@ -44,7 +44,7 @@ expr:
 
 %%
 
-int main(void) {
-    printf("Ingrese una expresión:\n");
+int main() {
+    printf("Calculadora: Ingrese expresiones (CTRL+D para salir)\n");
     return yyparse();
 }
