@@ -1,66 +1,76 @@
 # Calculadora bison precedencia 
 
-Este proyecto implementa una calculadora básica utilizando Flex y Bison, que permite realizar operaciones aritméticas, bit a bit, y calcular valores absolutos. El proyecto está compuesto principalmente por dos archivos: `calculadora.l` (escáner léxico) y `calculadora.y` (analizador sintáctico).
+Este repositorio contiene tres implementaciones de gramáticas en Bison, cada una ubicada en su propia carpeta para evitar conflictos. Cada gramática define una calculadora con diferentes reglas para las operaciones aritméticas.
 
-## Características
+## Estructura del Proyecto
 
-- **Operaciones aritméticas:** Suma, resta, multiplicación, división.
-- **Operaciones bit a bit:** AND, OR.
-- **Cálculo de valores absolutos:** Utilizando `|` para encerrar el valor.
-- **Soporte para números negativos.**
-- **Conversión automática a hexadecimal para los resultados.**
-- **Detección y manejo de errores comunes.**
+- **normal_calculator/**: Calculadora con la precedencia usual de los operadores `+`, `-`, `*`, `/`.
+- **inverse_calculator/**: Calculadora con precedencia invertida (`/`, `*`, `-`, `+`).
+- **low_parenthesis_precedence/**: Calculadora donde los paréntesis tienen la menor precedencia posible.
+
+Cada carpeta contiene los archivos `calculadora.l` y `calculadora.y` para definir el analizador léxico (Flex) y sintáctico (Bison), además de un `Makefile` para facilitar la compilación.
 
 ## Requisitos
 
-- Flex
-- Bison
-- GCC (o cualquier compilador compatible con C)
+- **Bison** y **Flex**: Necesitas tener instalados Bison y Flex para poder generar los analizadores.
+- **GCC**: Para compilar el código generado.
 
-## Instalación
+### Instalación de Dependencias en Linux
+
+```sh
+sudo apt-get install bison flex gcc
+```
+
+## Cómo Compilar y Ejecutar
 
 1. Clona el repositorio en tu máquina local:
     ```sh
-    git clone https://tu-repositorio-url.git
+    git clone https://github.com/dvar98/CALCULADORA-BISON-PRECEDENCIA-
     cd tu-repositorio
     ```
 
-2. Genera los archivos de código a partir de los archivos de definición:
-    ```sh
-    flex calculadora.l
-    bison -d calculadora.y
+2. Calculadora Normal (normal_calculator/)
+
+    Dirígete a la carpeta normal_calculator:
+
+   ``` sh
+   cd normal_calculator
     ```
+## Genera los archivos con Bison:
+ ```sh
+bison -d calculadora.y
+```
 
-3. Compila el proyecto:
-    ```sh
-    gcc lex.yy.c calculadora.tab.c -o calculadora -lm
-    ```
+## Genera el analizador léxico con Flex:
 
-## Uso
+```sh
+flex calculadora.l
+```
 
-Una vez compilada, puedes ejecutar la calculadora desde la línea de comandos:
+## Compila con GCC:
+
+```sh
+gcc calculadora.tab.c lex.yy.c -o calculadora -lm
+```
+
+## Ejecuta la calculadora:
 
 ```sh
 ./calculadora
 ```
 
+## Estructura de Archivos
 
-## Ejemplos
+Cada carpeta contiene los siguientes archivos:
 
-``` 
-Input: 3 + 5
-Output: = 8.000000000000000000000 (decimal) = 8(hexadecimal)
+    calculadora.l: Archivo Flex para definir los tokens.
+    calculadora.y: Archivo Bison para definir la gramática.
 
-Input: | -5 |
-Output: = 5.000000000000000000000 (decimal) = 5(hexadecimal)
+## Uso
 
-Input: 10 / 0
-Output: No se puede dividir entre cero
+    Ingresa expresiones aritméticas y obtendrás el resultado en la consola.
+    Utiliza CTRL+D (en Linux) para finalizar la entrada de expresiones.
 
-Input: 5 - 5
-Output: = 0 (decimal) = 0 (hexadecimal)
-
-```
 
 ## Estructura del proyecto
 
@@ -69,7 +79,9 @@ Output: = 0 (decimal) = 0 (hexadecimal)
 - calculadora.y: Archivo de definición sintáctica que define las reglas de gramática y la lógica de la calculadora.
 
 - calculadora.tab.h y calculadora.tab.c: Archivos generados por Bison que contienen las tablas de análisis sintáctico.calculadora.l: Archivo de definición léxica que describe los patrones que deben ser reconocidos por el escáner.
+
 calculadora.y: Archivo de definición sintáctica que define las reglas de gramática y la lógica de la calculadora.
+
 calculadora.tab.h y calculadora.tab.c: Archivos generados por Bison que contienen las tablas de análisis sintáctico.
 lex.yy.c: Archivo generado por Flex que contiene el código del escáner léxic
 
