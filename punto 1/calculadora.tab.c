@@ -448,7 +448,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   27
+#define YYLAST   31
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  11
@@ -550,7 +550,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 static const yytype_int8 yypact[] =
 {
       -3,     0,    -3,    -3,    -1,    -3,    -3,    11,    18,    -1,
-      -1,    -1,    -1,    -3,    -3,    -2,    -2,    -3,    -3
+      -1,    -1,    -1,    -3,    -3,    24,    24,    -2,    -2
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -581,14 +581,16 @@ static const yytype_int8 yytable[] =
 {
        2,     0,     3,     3,    11,    12,     8,     4,     4,     0,
        5,    15,    16,    17,    18,     9,    10,    11,    12,     0,
-       0,    13,     9,    10,    11,    12,     0,    14
+       0,    13,     9,    10,    11,    12,     0,    14,     9,    10,
+      11,    12
 };
 
 static const yytype_int8 yycheck[] =
 {
        0,    -1,     3,     3,     6,     7,     4,     8,     8,    -1,
       10,     9,    10,    11,    12,     4,     5,     6,     7,    -1,
-      -1,    10,     4,     5,     6,     7,    -1,     9
+      -1,    10,     4,     5,     6,     7,    -1,     9,     4,     5,
+       6,     7
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
@@ -1076,41 +1078,41 @@ yyreduce:
   case 5: /* line: expr EOL  */
 #line 33 "calculadora.y"
                { printf("Resultado: %f\n", (yyvsp[-1].dval)); }
-#line 1080 "calculadora.tab.c"
+#line 1082 "calculadora.tab.c"
     break;
 
   case 7: /* expr: expr DIV expr  */
 #line 38 "calculadora.y"
                     { (yyval.dval) = (yyvsp[-2].dval) / (yyvsp[0].dval); }
-#line 1086 "calculadora.tab.c"
+#line 1088 "calculadora.tab.c"
     break;
 
   case 8: /* expr: expr MUL expr  */
 #line 39 "calculadora.y"
                     { (yyval.dval) = (yyvsp[-2].dval) * (yyvsp[0].dval); }
-#line 1092 "calculadora.tab.c"
+#line 1094 "calculadora.tab.c"
     break;
 
   case 9: /* expr: expr SUB expr  */
 #line 40 "calculadora.y"
                     { (yyval.dval) = (yyvsp[-2].dval) - (yyvsp[0].dval); }
-#line 1098 "calculadora.tab.c"
+#line 1100 "calculadora.tab.c"
     break;
 
   case 10: /* expr: expr ADD expr  */
 #line 41 "calculadora.y"
                     { (yyval.dval) = (yyvsp[-2].dval) + (yyvsp[0].dval); }
-#line 1104 "calculadora.tab.c"
+#line 1106 "calculadora.tab.c"
     break;
 
   case 11: /* expr: OP expr CP  */
 #line 42 "calculadora.y"
                  { (yyval.dval) = (yyvsp[-1].dval); }
-#line 1110 "calculadora.tab.c"
+#line 1112 "calculadora.tab.c"
     break;
 
 
-#line 1114 "calculadora.tab.c"
+#line 1116 "calculadora.tab.c"
 
       default: break;
     }
@@ -1306,7 +1308,7 @@ yyreturnlab:
 #line 45 "calculadora.y"
 
 
-int main(void) {
-    printf("Ingrese una expresión:\n");
+int main() {
+    printf("Calculadora: Ingrese expresiones (CTRL+D para salir)\n");
     return yyparse();
 }

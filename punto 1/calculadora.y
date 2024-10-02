@@ -16,8 +16,8 @@ int yylex(void);
 %token <dval> NUMBER
 %token ADD SUB MUL DIV OP CP EOL
 
-%left ADD SUB
-%left MUL DIV
+%right ADD SUB
+%right MUL DIV
 
 %type <dval> expr
 
